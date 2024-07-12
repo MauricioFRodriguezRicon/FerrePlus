@@ -1,0 +1,205 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    box-sizing: border-box;
+  }
+
+body {
+    min-height: 100%;
+    background-color: #202020;
+}
+
+h1 {
+    color: white;
+}
+
+h2 {
+    color: white;
+}
+
+p {
+    color: #d6d6d6;
+}
+
+span {
+    color: #ffffff;
+    padding-left: 5px;
+}
+
+.mb-3 {
+    margin: 5px;
+}
+
+.container {
+    max-width: 400px; /* Ancho máximo del contenedor */
+    margin: auto; /* Centrar el contenedor */
+    padding-top: 50px; /* Espacio superior */
+}
+
+/* Ajusta el contenedor del formulario */
+form .mb-3 {
+    text-align: left; /* Alinea el texto a la izquierda */
+}
+
+/* Ajusta el span dentro del formulario */
+form .mb-3 span {
+    display: block; /* Asegúrate de que el span se comporte como un bloque */
+    color: #606060; /* Ajusta el color si es necesario */
+    margin-bottom: 5px; /* Espacio inferior */
+}
+
+.form-control {
+    background-color: #505050;
+    border-color: #707070;
+    color: #d7d7d7;
+    width: 100%;
+}
+
+/* Estilos para el input cuando está enfocado */
+.form-control:focus {
+    border-color: #606060; /* Cambia el color del borde al seleccionar */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* Agrega una sombra alrededor del input */
+    background-color: #707070;
+    color: white;
+}
+
+.form-control::placeholder {
+    color: #ffffff; /* Color del marcador de posición gris claro */
+  }
+
+.btn-register {
+    background-color: #3d3d3d; /* Gris oscuro */
+    border-color: #3d3d3d; /* Borde gris oscuro */
+    color: #ffffff; /* Texto blanco */
+    transition: background-color 0.3s ease; /* Transición de color */
+    width: 150px; /* Ancho del botón */
+    margin: 0 auto; /* Centra horizontalmente el botón */
+  }
+  
+  
+.btn-register:hover {
+    background-color: #ffc107; /* Cambio de color al pasar el cursor */
+    color: #000000; /* Cambio de color del texto al pasar el cursor */
+  }
+/* Estilos para los enlaces de inicio de sesión */
+.login-link {
+    text-align: center; /* Alinear al centro */
+    margin-top: 20px; /* Espacio superior */
+}
+
+.login-link a {
+    color: #ffffff; /* Blanco */
+    text-decoration: none; /* Sin subrayado */
+}
+
+.login-link a:hover {
+    text-decoration: underline; /* Subrayado al pasar el ratón */
+}
+
+/* Estilos para el marcador de posición en diferentes navegadores */
+::-webkit-input-placeholder {
+    color: #d7d7d7; /* Color de texto blanco */
+}
+
+:-moz-placeholder {
+    color: #d7d7d7; /* Color de texto blanco */
+}
+
+::-moz-placeholder {
+    color: #d7d7d7; /* Color de texto blanco */
+}
+
+:-ms-input-placeholder {
+    color: #d7d7d7; /* Color de texto blanco */
+}
+
+/* Estilos para restablecer contraseña*/
+
+/*BOTON VOLVER*/
+
+/* Estilos para el contenedor personalizado */
+.custom-container {
+    margin-top: 10px;
+    margin-left: 20px;
+}
+
+/* Estilos para el botón personalizado */
+.custom-container button {
+    background-color: transparent; /* Color de fondo */
+    color: #ffffff; /* Color del texto */
+    border: none; /* Sin borde */
+    padding: 10px; /* Relleno */
+    border-radius: 8px; /* Borde redondeado */
+    cursor: pointer; /* Cambio de cursor al pasar el ratón */
+    text-decoration: none; /* Sin subrayado */
+}
+
+/* Estilos para el botón al pasar el cursor */
+.custom-container button:hover {
+    background-color: #505050; /* Cambio de color de fondo al pasar el cursor */
+}
+
+/* Estilos para el enlace dentro del botón */
+.custom-container button a {
+    color: inherit; /* Hereda el color del texto del contenedor */
+    text-decoration: none; /* Sin subrayado */
+}
+
+/* Estilos para el icono dentro del botón */
+.custom-container button i {
+    vertical-align: middle; /* Alinear verticalmente con el texto */
+    margin-right: 5px; /* Espacio a la derecha del icono */
+}
+
+/* Estilos para el texto dentro del botón */
+.custom-container button span {
+    vertical-align: top; /* Alinear verticalmente con el icono */
+}
+
+.select {
+    width: 100%;
+    margin-top: 10px;
+    appearance: none; /* Elimina el estilo predeterminado del navegador */
+    background-color: transparent; /* Color de fondo oscuro */
+}
+
+
+.form-select {
+    background-color: #505050;
+    border-color: #707070;
+    color: #fff;
+    border-radius: 5px;
+    display: block;
+    width: 100%;
+}
+
+.form-select:hover {
+    border-color: transparent; /* Cambia el color del borde al seleccionar */
+    box-shadow:none; /* Agrega una sombra alrededor del input */
+    background-color: #505050;
+    color: white;
+}
+
+/* Estilo para las opciones del select al pasar el mouse sobre ellas */
+.form-select option:hover {
+    border: #606060;
+    background-color: #606060 !important;/* Cambia el color de fondo al pasar el mouse */
+    color: #fff; /* Cambia el color del texto al pasar el mouse */
+}
+
+.form-select:focus {
+    color: white;
+    border-color: transparent; /* Cambia el color del borde al seleccionar */
+    box-shadow:none; /* Agrega una sombra alrededor del input */
+}
+
+.form-select option {
+    color: #ffffff; /* Color del texto */
+    background-color: transparent;
+    padding: 8px 12px; /* Espaciado interno de las opciones */
+    border-color: none; /* Cambia el color del borde al seleccionar */
+    box-shadow:none; /* Agrega una sombra alrededor del input */
+}

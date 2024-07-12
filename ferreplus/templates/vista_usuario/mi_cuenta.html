@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ferreplus | Mi cuenta</title>
+    <!-- Enlace a Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/mi_perfil.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'favicon.png' %}">
+</head>
+<body>
+    {% csrf_token %}
+    <div class="custom-container">
+        <button id="BotonVolver" class="btn btn-secondary">
+          <a href="{% url 'pagina_principal' %}">
+            <i class='bx bx-chevron-left'>
+              <span>Volver</span>
+            </i>
+          </a>
+        </button>
+      </div>
+
+      <div class="container justify-content-center d-flex flex-column align-items-center ">
+        <h1 class="mb-4 ">Mi cuenta</h1>
+        <div class="account-details ">
+          <p>Nombre: <span class="highlight">{{nombre}}</span></p>
+          <p>Apellido: <span class="highlight">{{apellido}}</span></p>
+          <p>Email: <span class="highlight">{{email}}</span></p>
+          <p>DNI: <span class="highlight">{{dni}}</span></p>
+          <p>Fecha de nacimiento: <span class="highlight">{{fecha_nacimiento}}</span></p>
+        </div>
+
+        <div class="mt-4">
+          <a href="{% url 'editar_perfil_cliente' %}"><button class="btn btn-secondary edit-button">Editar cuenta</button></a>
+          <a href="{% url 'cambiar_contraseña_cliente' %}"><button class="btn btn-secondary edit-button">Cambiar contraseña</button></a>
+        </div>
+      </div>
+<!-- Enlace a Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

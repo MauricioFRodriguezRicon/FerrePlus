@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ferreplus Empleados | Ver intercambios de sucursal</title>
+    <!-- Enlace a Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/mis_empleados.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'favicon.png' %}">
+</head>
+<body>
+    <div class="custom-container">
+        <button id="BotonVolver" class="btn btn-secondary">
+             <a href="{% url 'inicio_emp' %}">
+                <i class='bx bx-chevron-left'>
+                    <span>Volver</span>
+                </i>
+            </a>
+        </button>    
+    </div>
+    <div class="d-flex justify-content-center">
+    <div class="container">
+        <div id="Header">
+            <h1>Intercambios de Sucursal</h1>
+            <h3 id="sucursalNombre">{{ sucursal.nombre }}</h3>
+        </div>
+        <div class="mb-3 text-center">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-primary" role="alert">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+        </div>
+
+        <div class="filtros d-flex justify-content-between align-items-center mb-3">
+            <form method="POST" class="form-inline d-flex align-items-center">
+                {% csrf_token %}
+                <div class="input-group">
+                    <input id="buscador" name="buscador" type="text" class="form-control" placeholder="Buscar" aria-label="Buscar" aria-describedby="buscar">
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-primary">
+                            <i class='bx bx-search-alt-2'></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="input-group mx-3">
+                    <input type="date" name="fecha" class="form-control" aria-label="Fecha" aria-describedby="fecha">
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-primary">
+                            <i class='bx bx-search-alt-2'></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <form method="get" action="" class="d-flex align-items-center">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="fecha">Ordenar por</span>
+                    </div>
+                    <select name="orden" id="sort" class="form-control" onchange="this.form.submit()">
+                        <option value="">Seleccionar</option>
+                        <option value="ascendente" {% if request.GET.sort == 'ascendente' %}selected{% endif %}>Ascendente</option>
+                        <option value="descendente" {% if request.GET.sort == 'descendente' %}selected{% endif %}>Descendente</option>
+                    </select>
+                </div>
+            </form>
+        </div>
+
+        <!-- Pestañas -->
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <a class="nav-link active" id="pendientes-tab" data-toggle="tab" href="#pendientes" role="tab" aria-controls="pendientes" aria-selected="true">Pendientes</a>
+            </li>
+
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="historial-tab" data-toggle="tab" href="#historial" role="tab" aria-controls="historial" aria-selected="false">Historial</a>
+            </li>
+        </ul>
+
+        <div class="tab-content" id="myTabContent">
+            <!-- Tabla Pendientes -->
+            <div class="tab-pane fade show active" id="pendientes" role="tabpanel" aria-labelledby="pendientes-tab">
+                <div class="mb-3">
+                    {% if intercambios %}
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="text-center">Publicación Base</th>
+                                <th class="text-center"></th>
+                                <th scope="col" class="text-center">Publicación Ofrecida</th>
+                                <th scope="col" class="text-center">Fecha <i class='bx bxs-calendar' ></i></th>
+                                <th scope="col" class="text-center">Hora <i class='bx bxs-time' ></i></th>
+                                <th scope="col" class="text-center">Estado</th>
+                                <th scope="col" class="text-center">Registro</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for intercambio in intercambios%}
+                                <tr>
+                                    <td class="align-middle text-center">{{ intercambio.base.titulo }}</td>
+                                    <td class="align-middle text-center icon-cell"><i class='bx bx-transfer'></i></td>
+                                    <td class="align-middle text-center">{{ intercambio.ofer.titulo }}</td>
+                                    <td class="align-middle text-center">{{ intercambio.fecha_intercambio }}</td>
+                                    <td class="align-middle text-center">{{ intercambio.hora }}</td>
+                                    <td class="align-middle text-center"><span class="badge badge-primary">PENDIENTE</span></td>
+                                    <td class="align-middle text-center">
+                                        <div class="d-flex">
+                                            <div class="btn-group-vertical">
+                                                <button id="{{intercambio.id}}" class="btn btn-danger" onclick="realizado('{{ intercambio.id }}')">
+                                                    <i class='bx bx-check'></i>
+                                                    <span>Realizado</span>
+                                                </button>
+                                                <button id="{{intercambio.id}}" class="btn btn-danger" onclick="cancelado('{{ intercambio.id }}')">
+                                                    <i class='bx bx-x'></i>
+                                                    <span>Cancelado</span>
+                                                </button>
+                                                <button id="{{intercambio.id}}" class="btn btn-danger" onclick="ausente('{{ intercambio.id }}')">
+                                                    <i class='bx bx-user-x'></i>
+                                                    <span>Ausente</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    {% else %}
+                    <div class="alert alert-primary text-center" role="alert">
+                        No tienes intercambios pendientes.
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Tabla Historial -->
+            <div class="tab-pane fade" id="historial" role="tabpanel" aria-labelledby="historial-tab">
+                <div class="mb-3">
+                    {% if intercambios_historial %}
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="text-center">Publicación base</th>
+                                <th class="text-center"></th>
+                                <th scope="col" class="text-center">Publicación ofrecida</th>
+                                <th scope="col" class="text-center">Fecha <i class='bx bxs-calendar' ></i></th>
+                                <th scope="col" class="text-center">Hora <i class='bx bxs-time' ></i></th>
+                                <th scope="col" class="text-center">Estado</th>
+                                <th scope="col" class="text-center">Compró <i class='bx bxs-cart-add' ></i></th>
+                                <th scope="col" class="text-center">Monto <i class='bx bxs-coin' ></i></i></th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for intercambio in intercambios_historial %}
+                                <tr>
+                                    <td class="align-middle text-center">{{ intercambio.base.titulo }}</td>
+                                    <td class="align-middle text-center icon-cell"><i class='bx bx-transfer'></i></td>
+                                    <td class="align-middle text-center">{{ intercambio.ofer.titulo }}</td>
+                                    <td class="align-middle text-center">{{ intercambio.fecha_intercambio }}</td>
+                                    <td class="align-middle text-center">{{ intercambio.hora }}</td>
+                                    <td class="align-middle text-centerr">
+                                        {% if intercambio.estado == 'REALIZADO' %}
+                                            <span class="badge badge-success">REALIZADO</span>
+                                        {% elif intercambio.estado == 'CANCELADO' %}
+                                            <span class="badge badge-danger">CANCELADO</span>
+                                        {% elif intercambio.estado == 'CANCELADO_AUSENTE' %}
+                                            <span class="badge badge-warning">AUSENTE</span>
+                                        {% elif intercambio.estado == 'PENDIENTE' %}
+                                            <span class="badge badge-primary">PENDIENTE</span>
+                                        {% endif %}
+                                    </td>
+                                    {% if intercambio.ganancia == 0 %}
+                                        <td class="align-middle text-center">No</td>
+                                    {% else %}
+                                        <td class="align-middle text-center">Sí</td>
+                                    {% endif %}
+                                    
+                                    <td class="align-middle text-center">{{ intercambio.ganancia }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    {% else %}
+                    <div class="alert alert-primary text-center" role="alert">
+                        No tienes historial de intercambios.
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+    
+    
+<script>
+    function cancelado(intercambioID) {
+        window.location.href = '/intercambio-cancelado/' + intercambioID + '/';
+    }
+
+    function realizado(intercambioID) {
+        window.location.href = '/intercambio-realizado/' + intercambioID + '/';
+    }
+
+    function ausente(intercambioID) {
+        window.location.href = '/intercambio-ausente/' + intercambioID + '/';
+    }
+</script>
+    <!-- Enlace a Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> 
+    </body>
+</html>

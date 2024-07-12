@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    box-sizing: border-box;
+  }
+
+body {
+    min-height: 100%;
+    background-color: #202020;
+    color: #ffffff;
+}
+
+.container {
+    max-width: 800px; /* Ancho máximo del contenedor */
+    margin: 0 auto; /* Centrar horizontalmente el contenedor */
+    padding: 50px; /* Espaciado interno del contenedor */
+}
+
+h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.alert {
+    margin: 0 auto;
+    align-items: center;
+    width: 400px;
+}
+
+.btn {
+    background-color: #3d3d3d; /* Color de fondo oscuro para los botones */
+    border-color: #3d3d3d; /* Color de borde oscuro para los botones */
+    color: #ffffff; /* Color de texto blanco para los botones */
+    transition: background-color 0.3s ease; /* Transición de color */
+    padding: 8px 16px; /* Espaciado interno de los botones */
+    border-radius: 4px; /* Borde redondeado de los botones */
+    margin: 5px;
+}
+
+.btn:hover {
+    color: #FFFF; /* Cambio de color del texto al pasar el cursor */
+}
+
+.card {
+    background-color: #2d2d2d; /* Color de fondo oscuro para las tarjetas */
+    border-color: #404040; /* Color de borde oscuro para las tarjetas */
+    color: #e0e0e0; /* Color de texto claro para las tarjetas */
+    margin-bottom: 20px; /* Espacio entre tarjetas */
+}
+
+.card-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.table {
+    background-color: #2d2d2d; /* Color de fondo oscuro para la tabla */
+    border-color: #404040; /* Color de borde oscuro para la tabla */
+    color: #e0e0e0; /* Color de texto claro para la tabla */
+}
+
+.table th,
+.table td {
+    border-color: #404040; /* Color de borde oscuro para las celdas de la tabla */
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #3d3d3d; /* Color de fondo oscuro para las filas impares */
+}
+
+.table-hover tbody tr:hover {
+    background-color: #505050; 
+    color: white;/* Color de fondo oscuro al pasar el cursor sobre las filas */
+}
+
+
+* Estilos para el contenedor personalizado */
+.custom-container {
+    margin-top: 10px;
+    margin-left: 20px;
+}
+
+/*BOTON VOLVER*/
+
+/* Estilos para el contenedor personalizado */
+.custom-container {
+    margin-top: 10px;
+    margin-left: 20px;
+}
+
+/* Estilos para el botón personalizado */
+.custom-container button {
+    background-color: transparent; /* Color de fondo */
+    color: #ffffff; /* Color del texto */
+    border: none; /* Sin borde */
+    padding: 10px; /* Relleno */
+    border-radius: 8px; /* Borde redondeado */
+    cursor: pointer; /* Cambio de cursor al pasar el ratón */
+    text-decoration: none; /* Sin subrayado */
+}
+
+/* Estilos para el botón al pasar el cursor */
+.custom-container button:hover {
+    background-color: #505050; /* Cambio de color de fondo al pasar el cursor */
+}
+
+/* Estilos para el enlace dentro del botón */
+.custom-container button a {
+    color: inherit; /* Hereda el color del texto del contenedor */
+    text-decoration: none; /* Sin subrayado */
+}
+
+/* Estilos para el icono dentro del botón */
+.custom-container button i {
+    vertical-align: middle; /* Alinear verticalmente con el texto */
+    margin-right: 5px; /* Espacio a la derecha del icono */
+}
+
+/* Estilos para el texto dentro del botón */
+.custom-container button span {
+    vertical-align: top; /* Alinear verticalmente con el icono */
+}
